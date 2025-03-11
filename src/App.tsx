@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
-import Box from './components/Box';
 import { OrbitControls } from '@react-three/drei';
+import Cube from './components/Cube/Cube';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <div style={{ width: '100%', height: '100%' }}>
         <Canvas camera={{ position: [0, 1, 10] }}>
           <ambientLight />
-          <Box position={[0, 0, 0]}></Box>
+          <Cube />
           <gridHelper args={[10, 10]}></gridHelper>
           <axesHelper args={[8]}></axesHelper>
           <OrbitControls></OrbitControls>
