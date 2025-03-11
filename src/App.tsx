@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from '@react-three/fiber';
+import Box from './components/Box';
+import { OrbitControls } from '@react-three/drei';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ width: '100%', height: '100%' }}>
+        <Canvas camera={{ position: [0, 1, 10] }}>
+          <ambientLight />
+          <Box position={[0, 0, 0]}></Box>
+          <gridHelper args={[10, 10]}></gridHelper>
+          <axesHelper args={[8]}></axesHelper>
+          <OrbitControls></OrbitControls>
+        </Canvas>
+      </div>
     </div>
   );
 }
