@@ -1,8 +1,11 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Cube from './components/Cube/Cube';
+import { useOrbitControlStore } from './stores/orbitControlStore';
 
 function App() {
+  const active = useOrbitControlStore((state) => state.active);
+
   return (
     <div
       style={{
@@ -19,7 +22,7 @@ function App() {
           <Cube />
           <gridHelper args={[10, 10]}></gridHelper>
           <axesHelper args={[8]}></axesHelper>
-          <OrbitControls></OrbitControls>
+          <OrbitControls enabled={active} />
         </Canvas>
       </div>
     </div>
