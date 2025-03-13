@@ -7,15 +7,11 @@ import Right from '../Plane/Right';
 import Top from '../Plane/Top';
 import { Mesh, Object3D } from 'three';
 import { ThreeEvent } from '@react-three/fiber';
-import { useOrbitControlStore } from '../../../stores/orbitControlStore';
+import { parseToFixedFloat } from '../../../utils/parseToFixedFloat';
 
 interface Props {
   position: [x: number, y: number, z: number];
 }
-
-const parseToFixedFloat = (num: number) => {
-  return parseFloat((num * 10).toFixed(2));
-};
 
 function Box({ position }: Props) {
   const boxRef = useRef<Mesh>(null);
