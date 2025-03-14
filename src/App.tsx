@@ -1,10 +1,16 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, OrbitControlsChangeEvent } from '@react-three/drei';
 import Cube from './components/Cube/Cube';
 import { useOrbitControlStore } from './stores/orbitControlStore';
 
 function App() {
   const active = useOrbitControlStore((state) => state.active);
+  const setPosition = useOrbitControlStore((state) => state.setPosition);
+
+  const handleEndOrbit = (event: OrbitControlsChangeEvent) => {
+    setPosition(event?.target.object.position);
+    console.log(event?.target.object.position);
+  };
 
   return (
     <div
@@ -20,9 +26,13 @@ function App() {
         <Canvas camera={{ position: [0, 1, 10] }}>
           <ambientLight />
           <Cube />
+
           <gridHelper args={[10, 10]}></gridHelper>
           <axesHelper args={[8]}></axesHelper>
-          <OrbitControls enabled={active} />
+          <OrbitControls
+            enabled={active}
+            onEnd={(event) => handleEndOrbit(event as OrbitControlsChangeEvent)}
+          />
         </Canvas>
       </div>
     </div>
